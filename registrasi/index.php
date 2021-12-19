@@ -157,7 +157,7 @@ if( isset($_POST["register"]) ) {
           <div class="col-md mt-3">
             <div class="input-group">
               <span class="input-group-text"><i class="fas fa-lock"></i></span>
-              <input type="text" class="form-control" name="password" placeholder="Password">
+              <input type="password" class="form-control" name="password" placeholder="Password">
               </div>
             </div>
 
