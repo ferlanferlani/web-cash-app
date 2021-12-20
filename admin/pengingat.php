@@ -294,11 +294,6 @@ if (isset($_POST["submit"])) {
                   <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">MENU</div>
                     <a class="dropdown-item" href="pengingat">Refresh</a>
-                   <?php
-                   if( $ingat > 0 ) {
-                     echo" <a class='dropdown-item' href='hapuspengingat.php'>Bersihkan</a>";
-                   }
-                   ?>
                   </div>
                 </div>
               </div>

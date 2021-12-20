@@ -334,7 +334,7 @@ if (isset($_POST["submit"])) {
                         $login = $_SESSION["admin"];
                       }
 
-                      $result = mysqli_query($conn, "SELECT * FROM admin WHERE id = '$login'");
+                      $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
                       $data = mysqli_fetch_assoc($result);
 
                       ?>

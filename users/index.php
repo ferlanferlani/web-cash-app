@@ -1,10 +1,11 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
     header("Location: ../.");
     exit;
 }
+
 
 require '../functions.php';
 
@@ -20,8 +21,6 @@ $topi = mysqli_query($conn, "SELECT * FROM artikel");
 $topik = mysqli_num_rows($topi);
 
 $jumlah_jiwa = mysqli_num_rows($jiwa);
-
-// $data = query("SELECT * FROM multi_user");
 
 ?>
 
@@ -85,9 +84,9 @@ $jumlah_jiwa = mysqli_num_rows($jiwa);
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-user-cog"></i>
+                    <i class="fas fa-user"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> Admin</div>
+                <div class="sidebar-brand-text mx-3"> user</div>
             </a>
 
             <!-- Divider -->
@@ -108,25 +107,6 @@ $jumlah_jiwa = mysqli_num_rows($jiwa);
                 <div class="sidebar-heading">
                     Cash
                 </div>
-
-                <?php foreach ($pemasukan as $row) : ?>
-                    <!-- Nav Item - Dashboard -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="pemasukan.php?id= <?= $row["id"]; ?>">
-                            <i class="fas fa-sign-in-alt"></i>
-                            <span>Kelola Dana Masuk</span></a>
-                        </li>
-                    <?php endforeach; ?>
-
-                    <?php foreach ($pengeluaran as $row) : ?>
-                        <!-- Nav Item - Dashboard -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="pengeluaran.php?id= <?= $row["id"]; ?>">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span>Kelola Dana Keluar</span></a>
-                            </li>
-                        <?php endforeach; ?>
-
 
                         <!-- Nav Item - Pages Collapse Menu -->
                         <li class="nav-item">
@@ -302,13 +282,12 @@ $jumlah_jiwa = mysqli_num_rows($jiwa);
        <div class="container-fluid">
                                         <?php
 
-                                        if( $_SESSION["admin"] ) {
-                                            $login = $_SESSION["admin"];
+                                        if( $_SESSION["users"] ) {
+                                            $login = $_SESSION["users"];
                                         }
 
                                         $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
                                         $data = mysqli_fetch_assoc($result);
-                                        // $data = query("SELECT * FROM multi_user WHERE id = '$login'");
 
                         //   Set Waktu sekarang
                                         $tanggal = mktime(date("m"), date("d"), date("y"));
@@ -337,7 +316,6 @@ $jumlah_jiwa = mysqli_num_rows($jiwa);
                                                     </div>
                                                     <div class="toast-body">
                                                         <?php
-
 
                                                         $pagi = ", selamat datang dan selamat pagi, perkenalkan nama saya adalah <b>CABOT</b> (Cash App Bot), saya di buat dan di program guna menemani aktivitas anda disini.";
 

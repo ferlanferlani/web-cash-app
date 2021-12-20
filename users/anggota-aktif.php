@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
     header("Location: ../.");
     exit;
 }
@@ -86,9 +86,9 @@ $topik = mysqli_num_rows($topi);
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-user-cog"></i>
+                    <i class="fas fa-user"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> Admin</div>
+                <div class="sidebar-brand-text mx-3">user</div>
             </a>
 
             <!-- Divider -->

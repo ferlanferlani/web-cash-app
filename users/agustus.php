@@ -1,25 +1,26 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
     header("Location: ../.");
     exit;
 }
 
 require '../functions.php';
 
-
+$data = query("SELECT * FROM agustus");
 $pemasukan = query("SELECT * FROM pemasukan");
 $pengeluaran = query("SELECT * FROM pengeluaran");
 
 $pengingat = mysqli_query($conn, "SELECT * FROM pengingat");
 $ingat = mysqli_num_rows($pengingat);
 
-$users = query("SELECT * FROM multi_user");
-
 $topi = mysqli_query($conn, "SELECT * FROM artikel");
+
 $topik = mysqli_num_rows($topi);
 
+$a = mysqli_query($conn, "SELECT * FROM agustus");
+$isi = mysqli_num_rows($a);
 ?>
 
 
@@ -34,8 +35,7 @@ $topik = mysqli_num_rows($topi);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cash App - nama komunitas</title>
-
+    <title>CashApp - Tagihan Agustus</title>
         <!-- favicon -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
@@ -86,9 +86,9 @@ $topik = mysqli_num_rows($topi);
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-user-cog"></i>
+                    <i class="fas fa-user"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> Admin</div>
+                <div class="sidebar-brand-text mx-3"> user</div>
             </a>
 
             <!-- Divider -->
@@ -110,7 +110,7 @@ $topik = mysqli_num_rows($topi);
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="far fa-credit-card"></i>
                     <span>Tagihan Cash</span>
@@ -118,14 +118,14 @@ $topik = mysqli_num_rows($topi);
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bulan</h6>
-                        <a class="collapse-item" href="januari">Januari</a>
+                        <a class="collapse-item " href="januari">Januari</a>
                         <a class="collapse-item" href="februari">Februari</a>
                         <a class="collapse-item" href="maret">Maret</a>
                         <a class="collapse-item" href="april">April</a>
                         <a class="collapse-item" href="mei">Mei</a>
                         <a class="collapse-item" href="juni">Juni</a>
                         <a class="collapse-item" href="juli">Juli</a>
-                        <a class="collapse-item" href="agustus">Agustus</a>
+                        <a class="collapse-item active" href="agustus">Agustus</a>
                         <a class="collapse-item" href="september">September</a>
                         <a class="collapse-item" href="oktober">Oktober</a>
                         <a class="collapse-item" href="november">November</a>
@@ -151,6 +151,7 @@ $topik = mysqli_num_rows($topi);
                             <a class="collapse-item" href="detail-pengeluaran.php?id= <?= $row["id"]; ?>">Pengeluaran</a>
                         <?php endforeach; ?>
                     </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -179,7 +180,7 @@ $topik = mysqli_num_rows($topi);
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="anggota-aktif">
                     <i class="fas fa-registered"></i>
                     <span>Anggota Aktif</span></a>
@@ -187,7 +188,6 @@ $topik = mysqli_num_rows($topi);
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -210,6 +210,7 @@ $topik = mysqli_num_rows($topi);
                         <i class="fa fa-bars"></i>
                     </button>
                     <div class="text-gray-800" style="font-size: 25px">Menu</div>
+
 
 
 
@@ -259,7 +260,7 @@ $topik = mysqli_num_rows($topi);
                                     <i class="fas fa-info-circle fa-sm fa-fw mr-2 text-primary"></i>
                                     Tentang
                                 </a>
-                               <div class="dropdown-divider"></div>
+                              <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Keluar
@@ -268,19 +269,35 @@ $topik = mysqli_num_rows($topi);
                         </li>
 
                     </ul>
+
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <!-- DataTales Example -->
-                    <div class="btn-group shadow-sm mb-3 ms-2">
-                        <a href="anggota-aktif" class="btn btn-success btn-sm"><i class="fas fa-sync"></i> Refresh</a>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="toast" role="alert" data-delay="10000" data-animation="true" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 0; right: 2rem; margin-bottom: 2rem; position:relative;">
+                        <div class="toast-header">
+                            <span class="mr-2 text-primary"><i class="fas fa-robot"></i></span>
+                            <strong class="me-auto">CABOT</strong>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">
+                        <p>Tombol <b>Bersihkan</b> di bawah guna menghapus semua data dalam tabel, gunakan tombol <b>Bersihkan</b> di bawah ketika data sudah tidak di butuhkan atau sudah memasuki tahun baru/pergantian tahun.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="btn-group mb-3 shadow-sm ms-1" role="group" aria-label="Button group with  nested dropdown">
+                        <a href="agustus"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-sync"></i> Refresh</button></a>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DAFTAR ANGGOTA "Nama Komunitas"YANG SUDAH TER-REGISTRASI</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar anggota "nama komunitas" yang sudah membayar cash di bulan agustus</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -289,14 +306,26 @@ $topik = mysqli_num_rows($topi);
                                         <tr>
                                             <th>NO</th>
                                             <th>NAMA</th>
+                                            <th>NOMINAL</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach ($users as $row) : ?>
+                                        <?php foreach ($data as $row) : ?>
                                             <tr>
                                                 <td><?= $i; ?></td>
-                                                <td><?= $row["username"]; ?></td>
+                                                <td><?= $row["nama"]; ?></td>
+                                                <td><b>Rp</b><?= $row["tunai"]; ?>,00.</td>
+                                                <td>
+                                                    <div class="btn-group" role="group">
+                                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Aksi</button>
+                                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                            <li><a class="dropdown-item" href="ubah8.php?id= <?= $row["id"]; ?>">Ubah Data</a></li>
+                                                            <li><a class="dropdown-item" href="hapus8.php?id= <?= $row["id"]; ?>" onclick="return confirm('konfirmasi untuk menghapus');">Hapus Data</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                         <?php endforeach; ?>
@@ -305,7 +334,6 @@ $topik = mysqli_num_rows($topi);
                             </div>
                         </div>
                     </div>
-
 
                 </div>
                 <!-- /.container-fluid -->
@@ -379,6 +407,15 @@ $topik = mysqli_num_rows($topi);
     <script src="../js/demo/datatables-demo.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- sweet alert -->
+    <script src="../dist/sweetalert2.all.min.js"></script>
+    <script src="../dist/myalrt.js"></script>
+
+    
+<script>
+  $('.toast').toast('show');
+</script>
 
 </body>
 

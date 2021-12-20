@@ -75,7 +75,7 @@ if (isset($_POST["login"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  $result = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username'");
+  $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE username = '$username'");
 
   if (mysqli_num_rows($result) === 1 ) {
 
@@ -83,12 +83,22 @@ if (isset($_POST["login"])) {
 
     if (password_verify($password, $row["password"])) {
 
-      // set session
-      $_SESSION["tentang"] = $tentang; 
-      $_SESSION["welcome"] = $welcome;
-      $_SESSION["admin"] = $row["id"];
-      header("Location: .");
-      exit;
+      if( $row['level'] == 'admin') {
+        // set session
+        $_SESSION['admin'] = $row['id'];
+        $_SESSION["tentang"] = $tentang; 
+        $_SESSION["welcome"] = $welcome;
+        header("Location: admin/.");
+        exit;
+
+      } else if( $row['level'] == 'user') {
+         // set session
+         $_SESSION['users'] = $row['id'];
+         $_SESSION["tentang"] = $tentang; 
+         $_SESSION["welcome"] = $welcome;
+         header("Location: users/.");
+         exit;
+      }
     }
   }
   $error = true;
@@ -100,16 +110,16 @@ if (isset($_POST["login"])) {
 
 <?php if (isset($error)) : ?>
   <div aria-live="polite" aria-atomic="true" style="position: relative;">
-    <div class="toast position-fixed mt-2" data-animation="true" data-delay="1000" data-autohide="false" style="position: absolute; top: 0; right: 0; z-index: 11; margin-right: 5px; ">
-      <div class="toast-header">
-        <span class="mr-2 text-primary"><i class="fas fa-robot"></i></span>
-        <strong class="mr-auto">CABOT</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+    <div class="toast position-fixed mt-2" data-animation="true" data-delay="1000" data-autohide="false" style="position: absolute; top: 0; right: 7px; z-index: 11; margin-right: 5px; ">
+    <div class="toast-header">
+    <span class="mr-2 text-primary"><i class="fas fa-robot"></i></span>
+                            <strong class="me-auto">CABOT</strong>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
       <div class="toast-body">
-        <p><b class="text-danger">Gagal Masuk!</b> Password atau username Anda tidak sesuai, silahkan cek dan ulang kembali.</p>
+        <p><b class="text-danger">Gagal Masuk!</b> Password atau username yang Anda masukkan salah, silahkan cek dan ulang kembali.</p>
         <a href="." class="btn btn-outline-primary btn-sm">Ok</a>
       </div>
     </div>     
@@ -180,14 +190,14 @@ if (isset($_POST["login"])) {
           <div class="col-md mt-3">
             <div class="input-group">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
-              <input type="text" class="form-control" name="username" placeholder="Username">
+              <input type="text" class="form-control" name="username" placeholder="Username" required>
               </div>
            </div>
 
           <div class="col-md mt-3">
             <div class="input-group">
               <span class="input-group-text"><i class="fas fa-lock"></i></span>
-              <input type="password" class="form-control" name="password" placeholder="Password">
+              <input type="password" class="form-control" name="password" placeholder="Password" required>
               </div>
             </div>
 

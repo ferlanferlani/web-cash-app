@@ -291,7 +291,7 @@ $topik = mysqli_num_rows($topi);
                     <div class="card shadow mb-4">
                      <!-- Card Header - Dropdown -->
                       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between text-center">   
-                         <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
+                         <h6 class="m-0 font-weight-bold text-primary">My Profile</h6>
                         </div>
 
                         <?php
@@ -300,7 +300,7 @@ $topik = mysqli_num_rows($topi);
                             $login = $_SESSION["admin"];
                         }
 
-                        $result = mysqli_query($conn, "SELECT * FROM admin WHERE id = '$login'");
+                        $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
                         $data = mysqli_fetch_assoc($result);
                         ?>
                                 <!-- Card Body -->

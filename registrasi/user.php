@@ -26,7 +26,7 @@ function regisadmin($data) {
     </div>
     <div class='toast-body'>
     <p><b class='text-danger'>Gagal Membuat Akun!</b> Username yang anda pilih saat ini sudah digunakan, Silahkan pilih username lain dan registrasi kembali.</p>
-    <a href='.' class='btn btn-outline-primary btn-sm'>Ok</a>
+    <a href='user' class='btn btn-outline-primary btn-sm'>Ok</a>
     </div>
     </div>     
     </div>";
@@ -59,8 +59,6 @@ function regisadmin($data) {
 
   // tambah user
   mysqli_query($conn, "INSERT INTO multi_user VALUES(NULL, '$username', '$password', '$level')");
-
-  mysqli_query($conn, "INSERT admin VALUES(NULL, '$username', '$password', '$level')");
 
   return mysqli_affected_rows($conn);
 
@@ -152,10 +150,10 @@ if( isset($_POST["register"]) ) {
 
           <div class="col-md mt-3">
             <div class="input-group">
-              <input type="hidden" class="form-control" name="level" value="admin">
+              <input type="hidden" class="form-control" name="level" value="user">
               </div>
             </div>
-            
+
           <div class="col-md mt-3">
             <div class="input-group">
               <span class="input-group-text"><i class="fas fa-user"></i></span>

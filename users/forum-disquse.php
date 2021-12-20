@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
   header("Location: ../.");
   exit;
 }
@@ -9,56 +9,35 @@ if (!isset($_SESSION["admin"])) {
 
 require '../functions.php';
 
-
 $pemasukan = query("SELECT * FROM pemasukan");
 $pengeluaran = query("SELECT * FROM pengeluaran");
 
 $pengingat = mysqli_query($conn, "SELECT * FROM pengingat");
 $ingat = mysqli_num_rows($pengingat);
 
-$pengingat = query("SELECT * FROM pengingat");
+$topik = query("SELECT * FROM artikel");
+$topik = mysqli_query($conn, "SELECT * FROM artikel");
+$komen = mysqli_num_rows($topik);
 
-$topi = mysqli_query($conn, "SELECT * FROM artikel");
-$topik = mysqli_num_rows($topi);
 
 // cek tombol
 if (isset($_POST["submit"])) {
 
   // cek cek
-  if (ingat($_POST) > 0) {
+  if (topik($_POST) > 0) {
 
-    echo"<div aria-live='polite' aria-atomic='true' style='position: relative;'>
-    <div class='toast position-fixed mt-2' data-animation='true' data-delay='1000' data-autohide='false' style='position: absolute; top: 0; right: 0; z-index: 11; margin-right: 5px; '>
-    <div class='toast-header'>
-    <span class='mr-2 text-primary'><i class='fas fa-robot'></i></span>
-    <strong class='mr-auto'>CABOT</strong>
-    <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
-    <span aria-hidden='true'>&times;</span>
-    </button>
-    </div>
-    <div class='toast-body'>
-    <p><span class='text-success'>Berhasil di dibuat!</span> Pengumuman berhasil di buat.</p>
-    <a href='pengingat' class='btn btn-outline-primary btn-sm'>Lihat</a>
-    </div>
-    </div>     
-    </div>";
-  } else {
-    echo"<div aria-live='polite' aria-atomic='true' style='position: relative;'>
-    <div class='toast position-fixed mt-2' data-animation='true' data-delay='1000' data-autohide='false' style='position: absolute; top: 0; right: 0; z-index: 11; margin-right: 5px; '>
-    <div class='toast-header'>
-    <span class='mr-2 text-primary'><i class='fas fa-robot'></i></span>
-    <strong class='mr-auto'>CABOT</strong>
-    <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
-    <span aria-hidden='true'>&times;</span>
-    </button>
-    </div>
-    <div class='toast-body'>
-    <p><span class='text-danger'>Gagal di dibuat!</span> Pengumuman gagal dibuat. Sistem mengalami error langsung laporkan pada developer guna langsung menangani masalah ini.</p>
-    <a href='bug' class='btn btn-outline-danger btn-sm'>Laporkan</a>
-    </div>
-    </div>     
-    </div>";
+    //    echo"<script>
+    //    alert ('Topik anda berhasil terkirim');
+    //    document.location.href = '.';
+    //  </script>";
+
+    // }else {
+    //    echo"<script>
+    //      alert ('Gagal terkirim');
+    //      document.location.href = '.';
+    //    </script>";
   }
+  echo "<meta http-equiv='refresh' content='0;url=forum-disquse'>";
 }
 ?>
 
@@ -72,9 +51,7 @@ if (isset($_POST["submit"])) {
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>CashApp - Buat pengingat</title>
-
-
+  <title> CashApp - Forum Disquse</title>
 
   <style>
   .card .scroll {
@@ -111,7 +88,7 @@ if (isset($_POST["submit"])) {
     <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
     <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />  
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -133,9 +110,9 @@ if (isset($_POST["submit"])) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-user-cog"></i>
+          <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Admin</div>
+        <div class="sidebar-brand-text mx-3">user</div>
       </a>
 
       <!-- Divider -->
@@ -218,7 +195,7 @@ if (isset($_POST["submit"])) {
           <li class="nav-item">
             <a class="nav-link" href="jiwa">
               <i class="fas fa-users"></i>
-              <span>Pemuda & Remaja</span></a>
+              <span>Nama Komunitas</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -229,6 +206,7 @@ if (isset($_POST["submit"])) {
               </li>
               <!-- Divider -->
               <hr class="sidebar-divider d-none d-md-block" />
+
               <!-- Sidebar Toggler (Sidebar) -->
               <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -264,10 +242,10 @@ if (isset($_POST["submit"])) {
 
                     <!-- diskusi -->
                     <li class="nav-item dropdown no-arrow mx-1">
-                      <a class="nav-link " href="forum-disquse" target="_blank" role="button">
+                      <a class="nav-link " href="forum-disquse" role="button">
                         <i class="fas fa-comments"></i>
                         <!-- Counter - Messages -->
-                        <span class="badge badge-danger badge-counter"><?= $topik; ?></span>
+                        <span class="badge badge-danger badge-counter"><?= $komen; ?></span>
                       </a>
                     </li>
                     <!-- akhir diskusi -->
@@ -306,57 +284,85 @@ if (isset($_POST["submit"])) {
               <!-- End of Topbar -->
 
               <!-- Begin Page Content -->
+              <marquee>
+                <h4>Welcome To CashApp Forum Discuse</h4>
+              </marquee>
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md">
-                    <div class="card shadow mb-4">
+                  <div class="col-md-6">
+                    <h5 class="mb-3">Daftar Topik</h5>
+                    <a href="." class="btn btn-info btn-sm shadow">Kembali</a>
+                    <div class="topik" style="
+                    display: block;
+                    padding: 20px;
+                    margin-top: 5px;
+                    width: auto;
+                    height: 500px;
+                    overflow: scroll;
+                    ">
+                    <?php
+                    if ($komen > 0) {
+                      echo "";
+                    } else {
+                      echo "<h3 style='text-align:center; padding-top: 12rem;'><i class='fas fa-robot text-primary'></i> Tidak ada topik hari ini</h3>";
+                    }
+                    ?>
+                    <?php
+                    $sql = "SELECT * FROM artikel";
 
-                      <!-- Card Header - Dropdown -->
-                      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">BUAT PENGUMUMAN</h6>
-                      </div>
+                    $que = mysqli_query($conn, $sql);
+                    while ($res = mysqli_fetch_array($que)
+                    ) { ?>
+                      <h6 class="text-primary" style="font-weight: bold;"><i class="fas fa-user text-gray-500"></i> <?php echo $res["nama"]; ?></h6>
+
+                      <small class="text-dark"><?php echo $res['tanggal']; ?></small>
+
+                      <h6><?php echo $res['judul']; ?></h6>
+
+                      <a href="komentar.php?komentar= <?php echo $res['id']; ?>" class="btn btn-primary btn-sm shadow mb-3">Bahas</a>
+                      <?php } ?>
+
+                  </div>
+                </div>
+                <div class="col-md-6 mt-5">
+                  <form action="" method="post">
+                    <div class="row">
+
+                      <?php
+
+                      if( $_SESSION["users"] ) {
+                        $login = $_SESSION["users"];
+                      }
+
+                      $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
+                      $data = mysqli_fetch_assoc($result);
+
+                      ?>
 
                       <?php
                       date_default_timezone_set('Asia/jakarta'); 
-                      $tgl = date('l, d/m/y h:i');
+                      $tgl = date('l, h:i');
                       ?>
-                      <!-- Card Body -->
-                      <div class="card-body">
-                        <form action="" method="post">
-                          <div class="row">
-                            <input type="hidden" name="waktu" id="waktu" value="<?= $tgl . " PM"; ?>">
 
-                          </div>
-                          <div class="form-group">
-                            <?php
-
-                            if( $_SESSION["admin"] ) {
-                              $login = $_SESSION["admin"];
-                            }
-
-                            $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
-                            $data = mysqli_fetch_assoc($result);
-                            ?>
-
-                            <div class="col-md form-group">
-                              <input type="hidden" name="nama" class="form-control col-md-6" value="<?=$data ["username"]; ?>"/>
-                            </div>
-                            <div class="form-group">
-                              <textarea class="form-control" name="judul" rows="7" required placeholder="Tulis isi pengumuman..."></textarea>
-                            </div>
-                            <button type="submit" name="submit" class="btn btn-primary shadow btn-sm">Buat pengumuman</button>
-                          </form>
-                        </div>
+                      <div class="col-md form-group">
+                        <input type="hidden" name="nama" class="form-control col-md-6" value="<?=$data ["username"]; ?>"/>
                       </div>
+                      <input type="hidden" name="tanggal" id="tanggal" value="<?= $tgl . " PM" ; ?>">
                     </div>
-                  </div>
+                    <div class="form-group">
+                      <textarea class="form-control" name="judul" rows="7" required placeholder="Tulis Topik"></textarea>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary shadow btn-sm mb-5">Kirim</button>
+                  </form>
                 </div>
               </div>
             </div>
-              <!-- End of Main Content -->
+          </div>
+          <!-- End of Main Content -->
 
-              <!-- Footer -->
-              <footer class="sticky-footer bg-white">
+
+          <!-- Footer -->
+          <footer class="sticky-footer bg-white">
                                     <div class="container my-auto">
                                         <div class="copyright text-center my-auto">
                                             <h6> &copy; Copyright <b>CashApp</b>. All Right reserved</h6>
@@ -364,65 +370,61 @@ if (isset($_POST["submit"])) {
                                         </div>
                                     </div>
                                 </footer>
-              <!-- End of Footer -->
+          <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+      </div>
+      <!-- End of Page Wrapper -->
+
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
+
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">KONFIRMASI</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-            <!-- End of Content Wrapper -->
-          </div>
-          <!-- End of Page Wrapper -->
-
-          <!-- Scroll to Top Button-->
-          <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-          </a>
-
-          <!-- Logout Modal-->
-          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">KONFIRMASI!</h5>
-                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div class="modal-body">Apakah anda yakin ingin keluar?</div>
-                <div class="modal-footer">
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-                  <a class="btn btn-primary" href="logout.php">Ya</a>
-                </div>
-              </div>
+            <div class="modal-body">Apakah Anda yakin ingin keluar?</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+              <a class="btn btn-primary" href="logout.php">Ya</a>
             </div>
           </div>
+        </div>
+      </div>
 
-          <!-- Bootstrap core JavaScript-->
-          <script src="../vendor/jquery/jquery.min.js"></script>
-          <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="../vendor/jquery/jquery.min.js"></script>
+      <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-          <!-- Core plugin JavaScript-->
-          <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-          <!-- Custom scripts for all pages-->
-          <script src="../js/sb-admin-2.min.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="../js/sb-admin-2.min.js"></script>
 
-          <!-- Page level plugins -->
-          <script src="../vendor/chart.js/Chart.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="../vendor/chart.js/Chart.min.js"></script>
 
-          <!-- Page level custom scripts -->
-          <script src="../js/demo/chart-area-demo.js"></script>
-          <script src="../js/demo/chart-pie-demo.js"></script>
+      <!-- Page level custom scripts -->
+      <script src="../js/demo/chart-area-demo.js"></script>
+      <script src="../js/demo/chart-pie-demo.js"></script>
 
-          <!-- Page level plugins -->
-          <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-          <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+      <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-          <!-- Page level custom scripts -->
-          <script src="../js/demo/datatables-demo.js"></script>
+      <!-- Page level custom scripts -->
+      <script src="../js/demo/datatables-demo.js"></script>
 
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
 
-          <script>
-            $('.toast').toast('show');
-          </script>
-        </body>
-
-        </html>
+    </html>

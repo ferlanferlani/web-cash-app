@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if ( !isset($_SESSION["admin"]) ) {
+if ( !isset($_SESSION["users"]) ) {
   header("Location: ../.");
   exit;
 
@@ -93,9 +93,9 @@ $data = query("SELECT * FROM komentar");
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-user-cog"></i>
+          <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Admin</div>
+        <div class="sidebar-brand-text mx-3">user</div>
       </a>
 
       <!-- Divider -->
@@ -299,7 +299,7 @@ $data = query("SELECT * FROM komentar");
                     if($komen > 0) {
                       echo"";
                     } else {
-                      echo"<h3 style='text-align:center; padding-top: 7rem;'><i class='fas fa-robot text-primary'></i> Belum ada komentar</h3>";
+                      echo"<h3 style='text-align:center; padding-top: 7rem;'>Belum ada komentar</h3>";
                     }
 
                     $que = mysqli_query($conn,$sql);
@@ -320,8 +320,8 @@ $data = query("SELECT * FROM komentar");
                     <div class="col-md form-group">
                       <?php
 
-                      if( $_SESSION["admin"] ) {
-                        $login = $_SESSION["admin"];
+                      if( $_SESSION["users"] ) {
+                        $login = $_SESSION["users"];
                       }
 
                       $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");

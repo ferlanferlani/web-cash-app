@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Des 2021 pada 08.02
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.0.13
+-- Generation Time: Dec 20, 2021 at 03:53 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,26 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` int(255) NOT NULL,
+  `level` enum('admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(4, 'admin', '$2y$10$7kONJ8S92YyUX9Z8DBkopOXohF3tzwuXYemrMP0II0FVd.mcKqOUO');
+INSERT INTO `admin` (`id`, `username`, `password`, `level`) VALUES
+(1, 'admin', 0, 'admin');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `agustus`
+-- Table structure for table `agustus`
 --
 
 CREATE TABLE `agustus` (
@@ -53,7 +54,7 @@ CREATE TABLE `agustus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `agustus`
+-- Dumping data for table `agustus`
 --
 
 INSERT INTO `agustus` (`id`, `nama`, `tunai`) VALUES
@@ -62,7 +63,7 @@ INSERT INTO `agustus` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `april`
+-- Table structure for table `april`
 --
 
 CREATE TABLE `april` (
@@ -72,7 +73,7 @@ CREATE TABLE `april` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `april`
+-- Dumping data for table `april`
 --
 
 INSERT INTO `april` (`id`, `nama`, `tunai`) VALUES
@@ -81,7 +82,7 @@ INSERT INTO `april` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `artikel`
+-- Table structure for table `artikel`
 --
 
 CREATE TABLE `artikel` (
@@ -94,7 +95,7 @@ CREATE TABLE `artikel` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data`
+-- Table structure for table `data`
 --
 
 CREATE TABLE `data` (
@@ -102,17 +103,10 @@ CREATE TABLE `data` (
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `data`
---
-
-INSERT INTO `data` (`id`, `nama`) VALUES
-(62, 'test');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `desember`
+-- Table structure for table `desember`
 --
 
 CREATE TABLE `desember` (
@@ -122,7 +116,7 @@ CREATE TABLE `desember` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `desember`
+-- Dumping data for table `desember`
 --
 
 INSERT INTO `desember` (`id`, `nama`, `tunai`) VALUES
@@ -131,7 +125,7 @@ INSERT INTO `desember` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `februari`
+-- Table structure for table `februari`
 --
 
 CREATE TABLE `februari` (
@@ -141,7 +135,7 @@ CREATE TABLE `februari` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `februari`
+-- Dumping data for table `februari`
 --
 
 INSERT INTO `februari` (`id`, `nama`, `tunai`) VALUES
@@ -150,7 +144,7 @@ INSERT INTO `februari` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `januari`
+-- Table structure for table `januari`
 --
 
 CREATE TABLE `januari` (
@@ -160,7 +154,7 @@ CREATE TABLE `januari` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `januari`
+-- Dumping data for table `januari`
 --
 
 INSERT INTO `januari` (`id`, `nama`, `tunai`) VALUES
@@ -169,7 +163,7 @@ INSERT INTO `januari` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jiwa`
+-- Table structure for table `jiwa`
 --
 
 CREATE TABLE `jiwa` (
@@ -178,7 +172,7 @@ CREATE TABLE `jiwa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jiwa`
+-- Dumping data for table `jiwa`
 --
 
 INSERT INTO `jiwa` (`id`, `jiwa`) VALUES
@@ -187,7 +181,7 @@ INSERT INTO `jiwa` (`id`, `jiwa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `juli`
+-- Table structure for table `juli`
 --
 
 CREATE TABLE `juli` (
@@ -197,7 +191,7 @@ CREATE TABLE `juli` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `juli`
+-- Dumping data for table `juli`
 --
 
 INSERT INTO `juli` (`id`, `nama`, `tunai`) VALUES
@@ -206,7 +200,7 @@ INSERT INTO `juli` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `juni`
+-- Table structure for table `juni`
 --
 
 CREATE TABLE `juni` (
@@ -216,7 +210,7 @@ CREATE TABLE `juni` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `juni`
+-- Dumping data for table `juni`
 --
 
 INSERT INTO `juni` (`id`, `nama`, `tunai`) VALUES
@@ -225,7 +219,7 @@ INSERT INTO `juni` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `komentar`
+-- Table structure for table `komentar`
 --
 
 CREATE TABLE `komentar` (
@@ -239,7 +233,7 @@ CREATE TABLE `komentar` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `maret`
+-- Table structure for table `maret`
 --
 
 CREATE TABLE `maret` (
@@ -249,7 +243,7 @@ CREATE TABLE `maret` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `maret`
+-- Dumping data for table `maret`
 --
 
 INSERT INTO `maret` (`id`, `nama`, `tunai`) VALUES
@@ -258,7 +252,7 @@ INSERT INTO `maret` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mei`
+-- Table structure for table `mei`
 --
 
 CREATE TABLE `mei` (
@@ -268,7 +262,7 @@ CREATE TABLE `mei` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mei`
+-- Dumping data for table `mei`
 --
 
 INSERT INTO `mei` (`id`, `nama`, `tunai`) VALUES
@@ -277,7 +271,28 @@ INSERT INTO `mei` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `november`
+-- Table structure for table `multi_user`
+--
+
+CREATE TABLE `multi_user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `level` enum('admin','user') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `multi_user`
+--
+
+INSERT INTO `multi_user` (`id`, `username`, `password`, `level`) VALUES
+(5, 'user', '$2y$10$Ti8bDztLkL1xHb4NqXiT4u1jABq.G4JYSQi57PsKfDJy.X4HGnq2.', 'user'),
+(10, 'admin', '$2y$10$LvmUkD7L8aAriISbdWyqfO2jdA8b05.nqbq9LWYNAwsIgTzh6XvVi', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `november`
 --
 
 CREATE TABLE `november` (
@@ -287,7 +302,7 @@ CREATE TABLE `november` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `november`
+-- Dumping data for table `november`
 --
 
 INSERT INTO `november` (`id`, `nama`, `tunai`) VALUES
@@ -296,7 +311,7 @@ INSERT INTO `november` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `oktober`
+-- Table structure for table `oktober`
 --
 
 CREATE TABLE `oktober` (
@@ -306,7 +321,7 @@ CREATE TABLE `oktober` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `oktober`
+-- Dumping data for table `oktober`
 --
 
 INSERT INTO `oktober` (`id`, `nama`, `tunai`) VALUES
@@ -315,7 +330,7 @@ INSERT INTO `oktober` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemasukan`
+-- Table structure for table `pemasukan`
 --
 
 CREATE TABLE `pemasukan` (
@@ -326,7 +341,7 @@ CREATE TABLE `pemasukan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pemasukan`
+-- Dumping data for table `pemasukan`
 --
 
 INSERT INTO `pemasukan` (`id`, `pemasukan`, `waktu`, `keterangan`) VALUES
@@ -335,7 +350,7 @@ INSERT INTO `pemasukan` (`id`, `pemasukan`, `waktu`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengeluaran`
+-- Table structure for table `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -346,7 +361,7 @@ CREATE TABLE `pengeluaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengeluaran`
+-- Dumping data for table `pengeluaran`
 --
 
 INSERT INTO `pengeluaran` (`id`, `pengeluaran`, `waktu`, `keterangan`) VALUES
@@ -355,7 +370,7 @@ INSERT INTO `pengeluaran` (`id`, `pengeluaran`, `waktu`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengingat`
+-- Table structure for table `pengingat`
 --
 
 CREATE TABLE `pengingat` (
@@ -368,7 +383,7 @@ CREATE TABLE `pengingat` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `september`
+-- Table structure for table `september`
 --
 
 CREATE TABLE `september` (
@@ -378,7 +393,7 @@ CREATE TABLE `september` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `september`
+-- Dumping data for table `september`
 --
 
 INSERT INTO `september` (`id`, `nama`, `tunai`) VALUES
@@ -387,7 +402,7 @@ INSERT INTO `september` (`id`, `nama`, `tunai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `topik`
+-- Table structure for table `topik`
 --
 
 CREATE TABLE `topik` (
@@ -397,298 +412,277 @@ CREATE TABLE `topik` (
   `isi` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `nama_panggilan` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `users`
---
-
-INSERT INTO `users` (`id`, `username`, `nama_panggilan`, `email`, `password`) VALUES
-(4, 'user', 'kang user', 'user@gmail.com', '$2y$10$.uy0FD/6EX6jANVWKGllSeSRvl4gYC6NKSs5tjG5GrsBm.b03LoUC');
-
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `agustus`
+-- Indexes for table `agustus`
 --
 ALTER TABLE `agustus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `april`
+-- Indexes for table `april`
 --
 ALTER TABLE `april`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `artikel`
+-- Indexes for table `artikel`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data`
+-- Indexes for table `data`
 --
 ALTER TABLE `data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `desember`
+-- Indexes for table `desember`
 --
 ALTER TABLE `desember`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `februari`
+-- Indexes for table `februari`
 --
 ALTER TABLE `februari`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `januari`
+-- Indexes for table `januari`
 --
 ALTER TABLE `januari`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jiwa`
+-- Indexes for table `jiwa`
 --
 ALTER TABLE `jiwa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `juli`
+-- Indexes for table `juli`
 --
 ALTER TABLE `juli`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `juni`
+-- Indexes for table `juni`
 --
 ALTER TABLE `juni`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `komentar`
+-- Indexes for table `komentar`
 --
 ALTER TABLE `komentar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `maret`
+-- Indexes for table `maret`
 --
 ALTER TABLE `maret`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mei`
+-- Indexes for table `mei`
 --
 ALTER TABLE `mei`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `november`
+-- Indexes for table `multi_user`
+--
+ALTER TABLE `multi_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `november`
 --
 ALTER TABLE `november`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `oktober`
+-- Indexes for table `oktober`
 --
 ALTER TABLE `oktober`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pemasukan`
+-- Indexes for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pengeluaran`
+-- Indexes for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pengingat`
+-- Indexes for table `pengingat`
 --
 ALTER TABLE `pengingat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `september`
+-- Indexes for table `september`
 --
 ALTER TABLE `september`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `topik`
+-- Indexes for table `topik`
 --
 ALTER TABLE `topik`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `agustus`
+-- AUTO_INCREMENT for table `agustus`
 --
 ALTER TABLE `agustus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `april`
+-- AUTO_INCREMENT for table `april`
 --
 ALTER TABLE `april`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `artikel`
+-- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
--- AUTO_INCREMENT untuk tabel `data`
+-- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT untuk tabel `desember`
+-- AUTO_INCREMENT for table `desember`
 --
 ALTER TABLE `desember`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `februari`
+-- AUTO_INCREMENT for table `februari`
 --
 ALTER TABLE `februari`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `januari`
+-- AUTO_INCREMENT for table `januari`
 --
 ALTER TABLE `januari`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
--- AUTO_INCREMENT untuk tabel `jiwa`
+-- AUTO_INCREMENT for table `jiwa`
 --
 ALTER TABLE `jiwa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `juli`
+-- AUTO_INCREMENT for table `juli`
 --
 ALTER TABLE `juli`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `juni`
+-- AUTO_INCREMENT for table `juni`
 --
 ALTER TABLE `juni`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `komentar`
+-- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT untuk tabel `maret`
+-- AUTO_INCREMENT for table `maret`
 --
 ALTER TABLE `maret`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `mei`
+-- AUTO_INCREMENT for table `mei`
 --
 ALTER TABLE `mei`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `november`
+-- AUTO_INCREMENT for table `multi_user`
+--
+ALTER TABLE `multi_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `november`
 --
 ALTER TABLE `november`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `oktober`
+-- AUTO_INCREMENT for table `oktober`
 --
 ALTER TABLE `oktober`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `pemasukan`
+-- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `pengeluaran`
+-- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `pengingat`
+-- AUTO_INCREMENT for table `pengingat`
 --
 ALTER TABLE `pengingat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `september`
+-- AUTO_INCREMENT for table `september`
 --
 ALTER TABLE `september`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `topik`
+-- AUTO_INCREMENT for table `topik`
 --
 ALTER TABLE `topik`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
-
---
--- AUTO_INCREMENT untuk tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

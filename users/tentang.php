@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
   header("Location: ../.");
   exit;
 }
@@ -118,9 +118,9 @@ if (isset($_POST["submit"])) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href=".">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-user-cog"></i>
+          <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Admin</div>
+        <div class="sidebar-brand-text mx-3">user</div>
       </a>
 
       <!-- Divider -->
@@ -296,9 +296,9 @@ if (isset($_POST["submit"])) {
 
         <?php
                         
-       if( $_SESSION["admin"] ) {
+       if( $_SESSION["users"] ) {
 
-        $login = $_SESSION["admin"];
+        $login = $_SESSION["users"];
 
         }
        $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
@@ -327,7 +327,7 @@ if (isset($_POST["submit"])) {
              endif;
              unset($_SESSION["tentang"] );
              ?>
-       <div class="row text-center">
+        <div class="row text-center">
           <div class="col-md mt-3" style="font-weight: 10;">
             <p>CashApp merupakan sebuah aplikasi cash bulanan berbasis web sederhana, dan di dalamnya terdapat dua hak akses multi level yaitu level admin dan level user yang pertama level Admin sebagaimana Admin ini adalah pengurus atau pengelola dana masuk maupun keluarnya dana dan juga dapat mengelola berbagai macam data di dalamnya, dan level User ia juga dapat membuat pengumuman, melihat detail perkembangan masuk dan keluarnya dana terbaru/terupdate.
             </p>

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["users"])) {
   header("Location: ../.");
   exit;
 }
@@ -133,9 +133,9 @@ if (isset($_POST["submit"])) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-user-cog"></i>
+          <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Admin</div>
+        <div class="sidebar-brand-text mx-3">user</div>
       </a>
 
       <!-- Divider -->
@@ -330,8 +330,8 @@ if (isset($_POST["submit"])) {
                           <div class="form-group">
                             <?php
 
-                            if( $_SESSION["admin"] ) {
-                              $login = $_SESSION["admin"];
+                            if( $_SESSION["users"] ) {
+                              $login = $_SESSION["users"];
                             }
 
                             $result = mysqli_query($conn, "SELECT * FROM multi_user WHERE id = '$login'");
