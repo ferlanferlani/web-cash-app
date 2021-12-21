@@ -24,9 +24,9 @@ before you start using this application, of course, you must register first so y
 For Login
 [Login](http://demoapp.infinityfreeapp.com/)
 
-Register As Admin
+Admin
 [Register As Admin](http://demoapp.infinityfreeapp.com/registrasi)
 
 
-Register As User
+User
 [Register As User](http://demoapp.infinityfreeapp.com/registrasi/user)
