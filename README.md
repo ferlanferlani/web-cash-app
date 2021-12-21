@@ -1,8 +1,6 @@
 # web-based-cash-app
 This is web-based monthly cash application
 
-
-
 # Getting Started
 CashApp is a simple web-based monthly cash application, and in it there are two multi-level access rights, namely the admin level and the first user level, the Admin level as this Admin is the administrator or manager of incoming and outgoing funds and can also manage various kinds of data in it. , and the User level he can also make announcements, see details of the latest/updated funds in and out developments.
 
@@ -13,14 +11,14 @@ before you start using this application, of course, you must register first so y
 
 
 # Main Features
-1.crud
-2.login multi level
-3.chatting/disquse
-4.manage incoming and outgoing funds
-5.see details of incoming and outgoing funds
-6.make an announcement
-7.view members registered
-8.see manager/admin
+* crud
+* login multi level
+* chatting/disquse
+* manage incoming and outgoing funds
+* see details of incoming and outgoing funds
+* make an announcement
+* view members registered
+* see manager/admin
 
 # For Demo
-http://demoapp.infinityfreeapp.com/
+the demo site [Demo](http://demoapp.infinityfreeapp.com/)
