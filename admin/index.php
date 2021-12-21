@@ -395,9 +395,9 @@ $jumlah_jiwa = mysqli_num_rows($jiwa);
                                                                 <li>
                                                                     Klik tanda <i class="fas fa-ellipsis-v fa-sm fa-fw"></i> di sebelah kanan atas, setelah anda klik scroll sidebar sedikit ke bawah dan klik pada menu <b>Tambahkan ke layar utama</b> perhatikan gambar di bawah!
                                                                 </li>
-                                                                <img src="../img/tips.jpg" height="400" alt="Tips" style="padding: 1rem;">
+                                                                <img src="../img/tips1.png" height="400" alt="Tips" style="padding: 1rem;">
                                                                 <img src="../img/tips2.png" height="400" alt="Tips" style="padding: 1rem;">
-                                                                <li>Setelah itu rename dengan nama <b>Akamsi Cash</b> dan klik tambahkan maka secara otomatis <i>shorctut</i> atau aplikasi ini berada tampil di layar utama smartphone anda, Sekarang coba cek di layar utama smartphone anda. Belum berhasil? tanya di <a href="forum-disquse" target="_blank">disini</a></li>
+                                                                <li>Setelah itu rename dengan nama <b>CashApp</b> dan ini opsional. klik tambahkan maka secara otomatis <i>shorctut</i> atau aplikasi ini berada tampil di layar utama smartphone anda, Sekarang coba cek di layar utama smartphone anda. Belum berhasil? tanya di <a href="forum-disquse" target="_blank">disini</a></li>
                                                             </ul>
                                                         </div>
                                                         <!-- Modal footer -->
