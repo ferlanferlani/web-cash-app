@@ -21,3 +21,6 @@ before you start using this application, of course, you must register first so y
 6.make an announcement
 7.view members registered
 8.see manager/admin
+
+# For Demo
+http://demoapp.infinityfreeapp.com/
