@@ -21,4 +21,12 @@ before you start using this application, of course, you must register first so y
 * see manager/admin
 
 ## For Demo
-the demo site [Demo](http://demoapp.infinityfreeapp.com/)
+For Login
+[Login](http://demoapp.infinityfreeapp.com/)
+
+Register As Admin
+[Register As Admin](http://demoapp.infinityfreeapp.com/registrasi)
+
+
+Register As User
+[Register As User](http://demoapp.infinityfreeapp.com/registrasi/user)
