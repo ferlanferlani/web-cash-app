@@ -342,7 +342,7 @@ if (isset($_POST["submit"])) {
             <div class="col-md text-center mt-5">
               <img src="../img/cashapp.png" class="img-fluid">
               <h5 class="text-gray-500">&copy; 2021 CashApp.</h5>
-              <p>Built by <a href="https://ferlanferlani.rf.gd">Ferlan Ferlani</a></p>
+              <p>Built by <a href="http://ferlanferlani.rf.gd">Ferlan Ferlani</a></p>
               <a href="https://github.com/FerlanFerlani/web-based-cash-app"><h5 style="font-weight: 300;">Unduh dari github <i class="fas fa-external-link-alt"></i></h5></a>
               <p>Setelah Download Jangan Lupas Kasih Star Yah Reponya:V</p>
             </div>

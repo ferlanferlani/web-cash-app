@@ -355,7 +355,7 @@ if (isset($_POST["submit"])) {
                                     <div class="container my-auto">
                                         <div class="copyright text-center my-auto">
                                             <h6> &copy; Copyright <b>CashApp</b>. All Right reserved</h6>
-                                            <p>Developed by <a href="https://ferlanferlani.rf.gd"><b>Ferlan Ferlani</b></a></p>
+                                            <p>Developed by <a href="http://ferlanferlani.rf.gd"><b>Ferlan Ferlani</b></a></p>
                                         </div>
                                     </div>
                                 </footer>
