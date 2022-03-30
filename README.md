@@ -31,5 +31,5 @@ Admin
 User
 [Register As User](http://demoapp.infinityfreeapp.com/registrasi/user)
 
-# Autohor
-CashApp created by [Ferlan Ferlani](http://ferlanferlani.rf.gd)
+# Author
+CashApp created by [Ferlan Ferlani.](http://ferlanferlani.rf.gd)
